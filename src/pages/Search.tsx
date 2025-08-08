@@ -20,6 +20,7 @@ export default function SearchPage() {
   const query = useQuery();
   const navigate = useNavigate();
   const q = query.get("q")?.trim() ?? "";
+  const locParam = query.get("loc")?.trim() ?? "";
   const [active, setActive] = useState("jobs");
   const [selectedJobId, setSelectedJobId] = useState<string | undefined>(undefined);
 
@@ -34,6 +35,10 @@ export default function SearchPage() {
   useEffect(() => {
     setSelectedJobId(undefined);
   }, [q]);
+
+  useEffect(() => {
+    setLocation(locParam || undefined);
+  }, [locParam]);
 
   const parsed = useMemo(() => parseBooleanQuery(q), [q]);
 
@@ -66,7 +71,7 @@ export default function SearchPage() {
       <h1 className="sr-only">Search results for {q}</h1>
 
       <div className="mb-4">
-        <SearchBar initial={q} />
+        <SearchBar initial={q} initialLocation={locParam} />
       </div>
 
       <Tabs value={active} onValueChange={setActive}>

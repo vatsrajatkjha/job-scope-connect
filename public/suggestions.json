@@ -1,0 +1,9 @@
+[
+  { "id": "s1", "type": "Job Title", "label": "Java Full Stack Developer", "href": "/search?q=Java%20Full%20Stack%20Developer" },
+  { "id": "s2", "type": "Category", "label": "Java in Jobs", "href": "/search?q=Java&type=jobs" },
+  { "id": "s3", "type": "Company", "label": "Java Developer - NVIDIA - Software Development", "sublabel": "NVIDIA", "href": "/search?q=Java%20Developer%20NVIDIA&type=jobs" },
+  { "id": "s4", "type": "Group", "label": "Java Developer Groups", "href": "/search?q=Java%20Developer%20Groups&type=groups" },
+  { "id": "s5", "type": "Skill", "label": "JavaScript", "icon": "JS", "href": "/search?q=JavaScript&type=jobs" },
+  { "id": "s6", "type": "Job Title", "label": "Senior Java Developer", "href": "/search?q=Senior%20Java%20Developer" },
+  { "id": "s7", "type": "Company", "label": "Microsoft", "href": "/search?q=Microsoft&type=companies" }
+]

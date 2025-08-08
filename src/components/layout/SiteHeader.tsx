@@ -1,10 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
-import { Bell, BriefcaseBusiness, Home, MessageSquareText, Search, UserCircle } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { Bell, BriefcaseBusiness, Home, MessageSquareText, UserCircle } from "lucide-react";
+import SearchBar from "@/components/SearchBar";
+import { useCallback } from "react";
 
 export default function SiteHeader() {
-  const [q, setQ] = useState("");
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
@@ -13,21 +12,9 @@ export default function SiteHeader() {
           <span className="text-primary">JobPortal</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-2">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Search for jobs, people, posts..."
-              className="pl-9 w-64"
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && q.trim()) {
-                  window.location.href = `/search?q=${encodeURIComponent(q.trim())}`;
-                }
-              }}
-              aria-label="Global search"
-            />
+        <div className="hidden md:flex flex-1 items-center">
+          <div className="w-full max-w-2xl">
+            <SearchBar />
           </div>
         </div>
 
@@ -38,12 +25,20 @@ export default function SiteHeader() {
           <NavLink to="/search?q=jobs" className={({isActive})=>isActive?"text-primary font-medium":"hover:text-primary"}>
             <BriefcaseBusiness className="inline h-4 w-4 mr-1" /> Jobs
           </NavLink>
+          <NavLink to="/resume" className={({isActive})=>isActive?"text-primary font-medium":"hover:text-primary"}>
+            Resume Builder
+          </NavLink>
           <button className="relative hover:text-primary" aria-label="Notifications">
             <Bell className="h-5 w-5" />
             <span className="absolute -top-1 -right-1 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-medium text-primary-foreground">3</span>
           </button>
-          <button className="hover:text-primary" aria-label="Messages">
-            <MessageSquareText className="h-5 w-5" />
+          <button className="hover:text-primary" aria-label="Toggle theme" onClick={useCallback(()=>{
+            const el = document.documentElement;
+            el.classList.toggle('dark');
+            try { localStorage.setItem('theme', el.classList.contains('dark') ? 'dark' : 'light'); } catch {}
+          }, [])}>
+            {/* Simple theme dot */}
+            <span className="inline-block h-4 w-4 rounded-full bg-primary" />
           </button>
           <button className="hover:text-primary" aria-label="Profile">
             <UserCircle className="h-6 w-6" />

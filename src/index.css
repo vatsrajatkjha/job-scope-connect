@@ -19,7 +19,7 @@ All colors MUST be HSL.
     --popover-foreground: 222 47% 5%;
 
     /* Primary brand: accessible blue */
-    --primary: 217 89% 50%;
+    --primary: 330 85% 60%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 16% 96%;
@@ -36,7 +36,7 @@ All colors MUST be HSL.
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 217 89% 50%;
+    --ring: 330 85% 60%;
 
     --radius: 0.75rem;
 
@@ -51,7 +51,7 @@ All colors MUST be HSL.
     --sidebar-ring: 217 89% 50%;
 
     /* Additions */
-    --link: 217 89% 50%;
+    --link: 330 85% 55%;
     --elevation-1: 0 8px 24px -8px hsl(222 15% 30% / 0.15);
   }
 
@@ -66,7 +66,7 @@ All colors MUST be HSL.
     --popover: 222 50% 6%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 92% 56%;
+    --primary: 330 90% 70%;
     --primary-foreground: 222 50% 6%;
 
     --secondary: 217 28% 18%;
@@ -83,7 +83,7 @@ All colors MUST be HSL.
 
     --border: 217 28% 18%;
     --input: 217 28% 18%;
-    --ring: 217 92% 56%;
+    --ring: 330 90% 70%;
 
     --sidebar-background: 222 50% 6%;
     --sidebar-foreground: 210 40% 98%;
@@ -94,7 +94,7 @@ All colors MUST be HSL.
     --sidebar-border: 222 40% 12%;
     --sidebar-ring: 217 92% 56%;
 
-    --link: 217 92% 66%;
+    --link: 330 90% 75%;
     --elevation-1: 0 8px 24px -8px hsl(220 40% 2% / 0.45);
   }
 }
