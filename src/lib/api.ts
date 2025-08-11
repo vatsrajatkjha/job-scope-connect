@@ -38,6 +38,16 @@ export type ResumeGenInput = {
   targetRole?: string;
   experience?: string; // free text bullet points
   skills?: string;
+  contactEmail?: string;
+  phone?: string;
+  location?: string;
+  website?: string;
+  linkedin?: string;
+  github?: string;
+  education?: string;
+  projects?: string;
+  certifications?: string;
+  template?: string;
 };
 
 export async function generateResumeAI(input: ResumeGenInput, signal?: AbortSignal): Promise<{ content: string }> {
@@ -53,16 +63,6 @@ export async function generateResumeAI(input: ResumeGenInput, signal?: AbortSign
     return await res.json();
   }
   // Fallback stub so UI works if edge function not yet wired
-  const content = `# ${input.fullName || 'Your Name'}
-${input.title || 'Software Engineer'}
-
-## Summary
-${input.summary || 'Passionate professional with a focus on impact.'}
-
-## Skills
-${input.skills || 'Java, React, SQL'}
-
-## Experience
-${input.experience || '- Describe your accomplishments here.'}`;
+  const content = `# ${input.fullName || 'Your Name'}\n${input.title || 'Software Engineer'}\n\n## Contact\n${[input.contactEmail, input.phone, input.location, input.website, input.linkedin, input.github].filter(Boolean).join(' | ') || 'email@example.com | City, Country'}\n\n## Summary\n${input.summary || 'Passionate professional with a focus on impact.'}\n\n## Skills\n${input.skills || 'Java, React, SQL'}\n\n## Experience\n${input.experience || '- Describe your accomplishments here.'}\n\n${input.education ? `## Education\n${input.education}\n\n` : ''}${input.projects ? `## Projects\n${input.projects}\n\n` : ''}${input.certifications ? `## Certifications\n${input.certifications}\n\n` : ''}---\nTemplate: ${input.template || 'modern'}`;
   return { content };
 }
