@@ -1,4 +1,4 @@
-import SearchBar from "@/components/SearchBar";
+
 import { SEO } from "@/components/SEO";
 import { Card, CardContent } from "@/components/ui/card";
 import { BriefcaseBusiness, Users, Newspaper } from "lucide-react";
@@ -10,9 +10,6 @@ const Index = () => {
       <section className="container mx-auto px-4 py-16 text-center">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">Find your next opportunity</h1>
         <p className="mt-3 text-lg text-muted-foreground">Use AND, OR, NOT to refine your search. Try: Java AND Developer NOT Senior</p>
-        <div className="mt-6 mx-auto max-w-2xl">
-          <SearchBar />
-        </div>
       </section>
 
       <section className="container mx-auto px-4 pb-16 grid gap-4 md:grid-cols-3">

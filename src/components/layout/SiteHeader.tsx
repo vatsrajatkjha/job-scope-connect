@@ -1,9 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { Bell, BriefcaseBusiness, Home, MessageSquareText, UserCircle } from "lucide-react";
 import SearchBar from "@/components/SearchBar";
 import { useCallback } from "react";
 
 export default function SiteHeader() {
+  const location = useLocation();
+  const onHome = location.pathname === "/";
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
@@ -14,7 +16,7 @@ export default function SiteHeader() {
 
         <div className="hidden md:flex flex-1 items-center">
           <div className="w-full max-w-2xl">
-            <SearchBar />
+            <SearchBar hideLocation={onHome} hideButton={onHome} />
           </div>
         </div>
 

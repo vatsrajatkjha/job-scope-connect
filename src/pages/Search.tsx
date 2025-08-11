@@ -7,7 +7,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { SEO } from "@/components/SEO";
-import SearchBar, { parseBooleanQuery } from "@/components/SearchBar";
+import { parseBooleanQuery } from "@/components/SearchBar";
 import { companies, groups, jobs, people, posts } from "@/data/mock";
 import JobCard from "@/components/jobs/JobCard";
 import JobDetail from "@/components/jobs/JobDetail";
@@ -70,9 +70,6 @@ export default function SearchPage() {
       <SEO title={`${q ? `${q} – ` : ""}Search Results | Job Portal`} description="Search jobs, posts, people, groups and companies with boolean operators." canonicalPath="/search" />
       <h1 className="sr-only">Search results for {q}</h1>
 
-      <div className="mb-4">
-        <SearchBar initial={q} initialLocation={locParam} />
-      </div>
 
       <Tabs value={active} onValueChange={setActive}>
         <TabsList className="grid grid-cols-5 w-full">

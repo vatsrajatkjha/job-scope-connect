@@ -22,7 +22,7 @@ export function parseBooleanQuery(query: string) {
   return { include, exclude, any };
 }
 
-export default function SearchBar({ initial, initialLocation }: { initial?: string; initialLocation?: string }) {
+export default function SearchBar({ initial, initialLocation, hideLocation, hideButton }: { initial?: string; initialLocation?: string; hideLocation?: boolean; hideButton?: boolean }) {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState(initial ?? "");
   const [loc, setLoc] = useState(initialLocation ?? "");
@@ -87,25 +87,29 @@ export default function SearchBar({ initial, initialLocation }: { initial?: stri
                 </button>
               )}
             </div>
-            <div className="relative">
-              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                value={loc}
-                onChange={(e) => setLoc(e.target.value)}
-                placeholder="Location (e.g., India)"
-                aria-label="Location"
-                className="pl-9 pr-10"
-                onKeyDown={(e) => { if (e.key === "Enter") goSearch(); }}
-              />
-              {loc && (
-                <button aria-label="Clear location" className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground" onClick={() => setLoc("")}> 
-                  <X className="h-4 w-4" />
-                </button>
-              )}
-            </div>
-            <div className="md:ml-2">
-              <Button onClick={() => goSearch()} className="w-full md:w-auto">Search</Button>
-            </div>
+            {!hideLocation && (
+              <div className="relative">
+                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  value={loc}
+                  onChange={(e) => setLoc(e.target.value)}
+                  placeholder="Location (e.g., India)"
+                  aria-label="Location"
+                  className="pl-9 pr-10"
+                  onKeyDown={(e) => { if (e.key === "Enter") goSearch(); }}
+                />
+                {loc && (
+                  <button aria-label="Clear location" className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground" onClick={() => setLoc("")}> 
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+            )}
+            {!hideButton && (
+              <div className="md:ml-2">
+                <Button onClick={() => goSearch()} className="w-full md:w-auto">Search</Button>
+              </div>
+            )}
           </div>
         </div>
       </PopoverTrigger>
@@ -116,7 +120,7 @@ export default function SearchBar({ initial, initialLocation }: { initial?: stri
             <ul className="max-h-80 overflow-auto">
               {items.map((s) => (
                 <li key={s.id}>
-                  <button className="w-full text-left px-4 py-3 hover:bg-muted/60" onClick={() => goSearch(s.label)}>
+                  <button className="w-full text-left px-4 py-3 hover:bg-muted/60" onMouseDown={() => goSearch(s.label)}>
                     <div className="flex items-center gap-3">
                       {s.icon ? (
                         <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-secondary text-[10px] font-bold text-foreground" aria-hidden>
@@ -138,7 +142,7 @@ export default function SearchBar({ initial, initialLocation }: { initial?: stri
               )}
             </ul>
             <div className="border-t p-2 text-right">
-              <Button variant="link" className="text-primary" onClick={() => goSearch()}>See all results</Button>
+              <Button variant="link" className="text-primary" onMouseDown={() => goSearch()}>See all results</Button>
             </div>
           </div>
         ) : (
